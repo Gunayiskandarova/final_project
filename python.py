@@ -12,4 +12,5 @@ elif munday in weekday:
        print("is gunu deyil") 
     else:
      print("is gunudur")
-#
+else:
+   print("is gunudur")
