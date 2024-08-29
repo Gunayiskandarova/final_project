@@ -1,10 +1,15 @@
-def seve_flight_details(flight_details, conn):
-    insrt_query="""
-        insert into public.flight(id, flight_number, date, time, origin, destination, seats
-        values(%s, %s, %s, %s, %s, %s, %s)"""
-    cursor=conn.cursor
+def save_flight_details(flight_details, conn):
+    insert_query = """
+        INSERT INTO flight (id, flight_number, date_flight, time_flight, origin, destination, seats)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """
+    
+    # cursor() fonksiyonunu çağırarak bir cursor oluşturuyoruz
+    cursor = conn.cursor()
+    
     try:
-        cursor.execute(insert_query,(
+        # execute fonksiyonunu çağırarak veriyi sorguya ekliyoruz
+        cursor.execute(insert_query, (
             flight_details["id"],
             flight_details["flight_number"],
             flight_details["date"],
@@ -13,9 +18,11 @@ def seve_flight_details(flight_details, conn):
             flight_details["destination"],
             flight_details["seats"]
         ))
+        print("save to database")
         conn.commit()
     except Exception as e:
         print(f"Error: {e}")
         conn.rollback()
     finally:
+        cursor.close()
         conn.close()

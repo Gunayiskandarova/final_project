@@ -1,8 +1,8 @@
-from final_project.booking.booking_operation import create_booking_details
-from final_project.booking.booking_postgress import save_booking_details
-from final_project.flight.flight_operation import create_flight_details
-from final_project.flight.flight_postgres import save_flight_details
-from final_project.config.connect_postgress import connect_to_database
+from booking.booking_operation import create_booking_details
+from booking.booking_postgress import save_booking_details
+from flight.flight_operation import create_flight_details
+from flight.flight_postgres import save_flight_details
+from config.connect_postgres import connect_to_database
 
 def console_menu():
     print("Welcome to FLIGHT")
@@ -17,12 +17,18 @@ def console_menu():
 
 def main():
     while True:
-        choise = input("Please choice your option: ")
-        if choise==1:
-            pass
-        elif choise==2:
-            pass
-        elif choise==3:
+        print("Welcome to Booking Menyu!!!!")
+        choise = console_menu()
+        postgres = connect_to_database()
+        # postgres = postgres_connection.connect_to_database()
+        if choise == "1":
+            print("------")
+            flight_details = create_flight_details()
+            save_flight_details (flight_details, postgres)
+        elif choise=="2":
+            booking_details=create_booking_details()
+            save_booking_details(booking_details,postgres)
+        elif choise=="3":
             pass
         elif choise==4:
             break

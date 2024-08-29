@@ -1,18 +1,22 @@
-def save_booking_details (booking_details, conn):
+def save_booking_details(booking_details, conn):
     insert_query = """
-    insert into public.booking(id, passenger_name, flight_id, count_seat
-    values(%s, %s, %s, %s)"""
-    cursor = conn.cursor
+        INSERT INTO public.booking (id, passenger_name, flight_id, seat_count)
+        VALUES (%s, %s, %s, %s)
+    """
+    cursor = conn.cursor()
+    
     try:
-        cursor.execute(insert_query(
+        cursor.execute(insert_query, (
             booking_details["id"],
-            booking_details["passengger_name"],
+            booking_details["passenger_name"],
             booking_details["flight_id"],
-            booking_details["count_seats"]
+            booking_details["count_seat"]
         ))
         conn.commit()
+        print("Booking details saved successfully")
     except Exception as e:
         print(f"Error: {e}")
         conn.rollback()
     finally:
-        con.close()
+        cursor.close()  
+        conn.close()   
