@@ -17,8 +17,6 @@ def connect_to_database():
         print(f"Error: {e}")
         return None
 
-
-connect_to_database()
     
 
 
