@@ -56,18 +56,33 @@ def uptade_flight(id, flight_update_details, conn):
     print(f"error detected {e}")
 
 def delete_flight(flight_id, conn):
-  delete_query = """
-  DELETE FROM flights
-  WHERE id = %s;
-  """
-  cursor = conn.cursor()
-  try:
-    cursor.execute(delete_query, (flight_id,))
-    conn.commit()
-    print(f"FLİGHT ID {flight_id} SUCCESSFULLY DELETE!")
-  except Exception as e:
-    conn.rollback()
-    print(f"Error detected: {e}")
+ delete_query = """
+ DELETE FROM flights
+ WHERE id = %s;
+ """
+ select_query = """
+ SELECT COUNT(*) FROM flight
+ WHERE id = %s;
+ """
+ cursorr = conn.cursor()
+ try:     
+  cursorr.execute(select_query, (flight_id,))
+  result = cursorr.fetchone()
+  
+  if result:
+      count = int(result[0])  
+  else:
+      count = 0
+  if count >0:
+      cursorr.execute(delete_query, (flight_id,))
+      conn.commit()
+      print(f"FLİGHT ID {flight_id} SUCCESSFULLY DELETE!")
+  else:
+      conn.close()
+      print("wrong id again")    
+ except Exception as e:
+  conn.rollback()
+  print(f"Error detected: {e}")
 
 def find_flight_by_id(flight_id, conn):
   insert_query = '''
@@ -84,7 +99,7 @@ def find_flight_by_id(flight_id, conn):
 
 def find_all_flights(conn):
   insert_query = """
-  SELECT * FROM booking;
+  SELECT * FROM flight;
   """
   try:
     curr=conn.cursor()
@@ -104,17 +119,17 @@ def find_all_flights(conn):
     conn.close()
 
 def find_flights_by_origin(origin, conn):
-  insert_query = '''
-  SELECT * FROM flight
-  WHERE origin = %s
-  '''
-  try:
-    with conn.cursor() as curr:
-      curr.execute(insert_query, (origin,))
-      result = curr.fetchone() 
-      print(result)
-  except Exception as e:
-    print(f"Error: {e}")
-
+    insert_query = '''
+    SELECT * FROM flight
+    WHERE origin = %s
+    '''
+    try:
+        with conn.cursor() as curr:
+         curr.execute(insert_query, (origin,))
+         result = curr.fetchall() 
+         for row in result:
+             print(row)
+    except Exception as e:
+        print(f"Error: {e}")
 
 

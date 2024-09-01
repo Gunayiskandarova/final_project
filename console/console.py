@@ -1,5 +1,5 @@
 from booking.booking_operation import create_booking_details,booking_update_details
-from booking.booking_postgress import save_booking_details,update_booking, find_all_booking, delete_booking, find_booking_by_id
+from booking.booking_postgress import save_booking_details,update_booking, find_all_booking, delete_booking, find_booking_by_id, save_booking, update_delete_bookings, update_save_bookings
 from flight.flight_operation import create_flight_details, flight_update_details 
 from flight.flight_postgres import save_flight_details, uptade_flight, find_flight_by_id, delete_flight,find_all_flights, find_flights_by_origin
 from config.connect_postgres import connect_to_database
@@ -35,6 +35,7 @@ def main():
         elif choise=="2":
             booking_details=create_booking_details()
             save_booking_details(booking_details,postgres)
+            
         elif choise == "3":
             flight_id = int(input("Enter id: "))
             find_flight_by_id(flight_id, postgres)
@@ -55,7 +56,7 @@ def main():
             booking_id = int(input("Enter id: "))
             delete_booking(booking_id,postgres)
         elif choise == "9":
-             find_all_flights()
+             find_all_flights(postgres)
         elif choise == "10":
             origin = input("Enter origin city: ")
             find_flights_by_origin(origin, postgres)
