@@ -1,17 +1,19 @@
+# create table flight 
 # (
 # id integer primary key,
 # flight_number integer, 
-# date_flight varchar, 
-# time_flight varchar, 
+# date_flight  DATE, 
+# time_flight TIME, 
 # origin varchar, 
 # destination varchar, 
 # seats integer
 # );
 
 
+
 # drop table flight;
 
-
+# drop table booking;
 
 # create table booking
 # (
@@ -26,3 +28,6 @@
 # select * from booking;
 # select *  from  flight
 # full join booking on flight.id = booking.flight_id;
+
+
+# select * from flight ;

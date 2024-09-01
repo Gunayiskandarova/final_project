@@ -133,3 +133,29 @@ def find_flights_by_origin(origin, conn):
         print(f"Error: {e}")
 
 
+def merge_sort_by_date(flight):
+    if len(flight) <= 1:
+        return flight
+
+    middle = len(flight) // 2
+    left_list = merge_sort_by_date(flight[:middle])
+    right_list = merge_sort_by_date(flight[middle:])
+
+    return merge_dates(left_list, right_list)
+
+def merge_dates(left, right):
+    sorted_flight = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i]['date_flight'] < right[j]['date_flight']:
+            sorted_flight.append(left[i])
+            i += 1
+        else:
+            sorted_flight.append(right[j])
+            j += 1
+
+    sorted_flight.extend(left[i:])
+    sorted_flight.extend(right[j:])
+    return sorted_flight
+
