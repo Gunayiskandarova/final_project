@@ -4,7 +4,7 @@ from psycopg2 import connect, OperationalError
 def connect_to_database():
 
     try:
-        conn = connect(
+        conn =connect(
             dbname = "postgres",
             user = "postgres",
             password = "postgres",

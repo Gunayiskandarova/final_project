@@ -1,7 +1,7 @@
 from booking.booking_operation import create_booking_details,booking_update_details
 from booking.booking_postgress import save_booking_details,update_booking, find_all_booking, delete_booking, find_booking_by_id
 from flight.flight_operation import create_flight_details, flight_update_details 
-from flight.flight_postgres import save_flight_details, uptade_flight, find_flight_by_id, delete_flight,find_all_flights, find_flights_by_origin
+from flight.flight_postgres import save_flight_details, find_flight_by_id, delete_flight,find_all_flights, find_flights_by_origin, update_flight
 from config.connect_postgres import connect_to_database
 
 def console_menu():
@@ -48,7 +48,7 @@ def main():
         elif choise=="6":
             uptade_details = flight_update_details()
             update_for_id = int(input("Enter update ID: "))
-            uptade_flight(update_for_id, uptade_details, postgres)
+            update_flight(update_for_id, uptade_details, postgres)
         elif choise == "7":
             flight_id= int(input("Enter id: "))
             delete_flight(flight_id, postgres)

@@ -17,9 +17,8 @@ def save_booking_details(booking_details, conn):
     except Exception as e:
         print(f"Error: {e}")
         conn.rollback()
-    finally:
-        cursor.close()  
-        conn.close()   
+  
+
 
 
 def update_booking(id, booking_update_details, conn):
@@ -55,19 +54,32 @@ def find_all_booking(conn):
       print(row)
   except Exception as e:
     print(f"Error: {e}")
-  
-def find_booking_by_id(flight_id, conn):
-  insert_query = '''
-  SELECT * FROM booking
-  WHERE id = %s
-  '''
-  try:
-    with conn.cursor() as curr:
-      curr.execute(insert_query, (flight_id,))
-      result = curr.fetchone() 
-      print(result)
-  except Exception as e:
-    print(f"Error: {e}")
+
+
+def find_booking_by_id(booking_id, conn):
+    select_query = "SELECT * FROM booking WHERE id = %s;"
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(select_query, (booking_id,))
+            result = cursor.fetchone()
+            if result:
+                booking_data ={
+                    "id": result[0],
+                    "passenger_name": result[1],
+                    "flight_id": result[2],
+                    "seat_count": result[3]
+                }
+                    
+            
+
+            
+                return booking_data
+            else:
+                print(f"No booking found with ID {booking_id}.")
+                return None
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
 
 
 def delete_booking(booking_id, conn):
