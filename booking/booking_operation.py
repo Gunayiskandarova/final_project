@@ -9,7 +9,6 @@ def create_booking_details():
 
 def booking_update_details():
   booking_update_details = {}
-  booking_update_details["id"] = input("Update booking id: ")
   booking_update_details["passenger_name"] = input("Update passenger name: ")
   booking_update_details["flight_id"] = input("Update flight id: ")
   booking_update_details["seat_count"] = input("Update seat count: ")

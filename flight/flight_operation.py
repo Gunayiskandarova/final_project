@@ -21,16 +21,16 @@ def flight_update_details():
 
 
 
-def flight_delete_details ():
-      flight_delete = {}
-      flight_delete['id']=input ("Enter flight_id: ")     
-      flight_delete['flight_number']=input ("Enter flight_number: ")
-      flight_delete['date']=input ("Enter flight_date (YYY.MM.DD): ")
-      flight_delete['time']=input ("Enter flight_time (HH:MM): ")
-      flight_delete['origin']=input ("Enter flight_origin: ")
-      flight_delete['destination']=input ("Enter flight_destination: ")
-      flight_delete['seats']= input ("Enter flight_seats: ")
-      return flight_delete
+# def flight_delete_details ():
+#       flight_delete = {}
+#       flight_delete['id']=input ("Enter flight_id: ")     
+#       flight_delete['flight_number']=input ("Enter flight_number: ")
+#       flight_delete['date']=input ("Enter flight_date (YYY.MM.DD): ")
+#       flight_delete['time']=input ("Enter flight_time (HH:MM): ")
+#       flight_delete['origin']=input ("Enter flight_origin: ")
+#       flight_delete['destination']=input ("Enter flight_destination: ")
+#       flight_delete['seats']= input ("Enter flight_seats: ")
+#       return flight_delete
 
 
 
